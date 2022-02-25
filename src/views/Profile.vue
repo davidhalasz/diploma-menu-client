@@ -99,7 +99,7 @@ import Menu from "../models/menu";
 import vuex from "vuex";
 import { nextTick } from "@vue/runtime-core";
 import QrcodeVue from "qrcode.vue";
-import { BASE_API_URL } from "../common/Constants";
+import { BASE_CLIENT_URL } from "../common/Constants";
 
 export default {
   name: "profile",
@@ -121,7 +121,7 @@ export default {
     MenuService.getAllMenus().then((response) => {
       this.menuList = response.data;
       this.menuList.forEach((value) => {
-        this.urls.push(BASE_API_URL + "/menu/show/" + value.id);
+        this.urls.push(BASE_CLIENT_URL + "/menu/show/" + value.id);
         this.downloadIds.push("canvas" + value.id);
       });
       console.log(this.menuList);
