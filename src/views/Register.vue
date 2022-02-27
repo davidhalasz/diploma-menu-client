@@ -90,7 +90,19 @@ export default {
           console.log(err);
           if (err?.response?.status == 409) {
             this.errorMessage = "Username already is exists.";
+            this.submitted = false;
+          } else if (err?.response.status == 400) {
+            this.submitted = false;
+            if (this.formData.username.length < 5) {
+              this.errorMessage = "Username must be at least 5 characters!";
+              return;
+            }
+            if (this.formData.password.length < 5) {
+              this.errorMessage = "Password must be at least 5 characters!";
+              return;
+            }
           } else {
+            this.submitted = false;
             this.errorMessage = "Error occured";
           }
         })
